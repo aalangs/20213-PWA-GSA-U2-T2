@@ -7,7 +7,7 @@ class Camera {
     }
 
     on() {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        if (navigator.mediaDevices) {
             this.off();
             return navigator.mediaDevices.getUserMedia({
                 audio: false,
@@ -33,9 +33,9 @@ class Camera {
     }
 
     on_back() {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        if (navigator.mediaDevices) {
             this.off();
-            navigator.mediaDevices.getUserMedia({
+            return navigator.mediaDevices.getUserMedia({
                 audio: false,
                 video: {
                     width: 300,
@@ -52,7 +52,7 @@ class Camera {
             })
             .catch( err => {
                 console.log('Error al abrir la camara trasera');
-                //console.log(err);
+                console.log(err);
                 return false
             })
         } else {
