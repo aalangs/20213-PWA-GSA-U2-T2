@@ -1,23 +1,28 @@
+let path = '/20213-PWA-GSA-U2-T2/sw.js';
+
 const CACHE_STATIC = "static_v1"
 const CACHE_INMUTABLE = "inmutable_v1"
 
 self.addEventListener('install', (event) => {
-    console.log('SW Instalado');
+    let url = self.location.href;
+    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        path = '/';
+    }
 
     const cacheStatic = caches.open(CACHE_STATIC)
     .then( cache => {
         cache.addAll([
-            './',
-            './index.html',
-            './manifest.json',
-            './js/camera.js',
-            './js/app.js',
-            './images/icons/android-launchericon-48-48.png',
-            './images/icons/android-launchericon-72-72.png',
-            './images/icons/android-launchericon-96-96.png',
-            './images/icons/android-launchericon-144-144.png',
-            './images/icons/android-launchericon-192-192.png',
-            './images/icons/android-launchericon-512-512.png',
+            path + './',
+            path + './index.html',
+            path + './manifest.json',
+            path + './js/camera.js',
+            path + './js/app.js',
+            path + './images/icons/android-launchericon-48-48.png',
+            path + './images/icons/android-launchericon-72-72.png',
+            path + './images/icons/android-launchericon-96-96.png',
+            path + './images/icons/android-launchericon-144-144.png',
+            path + './images/icons/android-launchericon-192-192.png',
+            path + './images/icons/android-launchericon-512-512.png',
         ])
     })
 
